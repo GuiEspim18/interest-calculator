@@ -37,6 +37,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.fiap.interest.components.Field
+import br.com.fiap.interest.components.Results
 import br.com.fiap.interest.ui.theme.InterestTheme
 
 class MainActivity : ComponentActivity() {
@@ -157,51 +158,10 @@ fun Greeting() {
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
-        Card (
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFF4CAF50),
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 30.dp, end = 30.dp),
-        ) {
-            Column (
-                modifier = Modifier
-                    .padding(13.dp)
-            ) {
-                Text(
-                    text = "Resultado",
-                    color = Color(0xFFF0F0F0),
-                    fontWeight = FontWeight.Bold
-                )
-                Row {
-                    Text(
-                        text = "Juros",
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "0.00",
-                        modifier = Modifier
-                            .padding(start = 10.dp),
-                        color = Color(0xFFF0F0F0),
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-                Row {
-                    Text(
-                        text = "Montante",
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "0.00",
-                        modifier = Modifier
-                            .padding(start = 10.dp),
-                        color = Color(0xFFF0F0F0),
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-        }
+        Results(
+            interests = interests,
+            amount = amount
+        )
     }
 }
 
