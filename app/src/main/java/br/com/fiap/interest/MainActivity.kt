@@ -39,6 +39,8 @@ import androidx.compose.ui.unit.dp
 import br.com.fiap.interest.components.Field
 import br.com.fiap.interest.components.Results
 import br.com.fiap.interest.ui.theme.InterestTheme
+import br.com.fiap.interest.views.InterestsScreen
+import br.com.fiap.interest.views.InterestsScreenViewModel
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -48,120 +50,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             InterestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
-
-                }
+                    InterestsScreen(InterestsScreenViewModel())
+                }   
             }
         }
-    }
-}
-
-@Composable
-fun Greeting() {
-
-    var capital by remember {
-        mutableStateOf("")
-    }
-
-    var tax by remember {
-        mutableStateOf("")
-    }
-
-    var period by remember {
-        mutableStateOf("")
-    }
-
-    var interests by remember {
-        mutableStateOf(0.0)
-    }
-
-    var amount by remember {
-        mutableStateOf(0.0)
-    }
-
-    Column (
-        modifier = Modifier
-            .background(Color(0xFFF0F0F0))
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "Cálculo de Juros Simples",
-            color = Color(0xFFB82B2B),
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Card (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 30.dp, end = 30.dp),
-            shape = RoundedCornerShape(10.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFFA5D8DF)
-            )
-        ) {
-            Column(
-                modifier = Modifier.
-                            padding(20.dp)
-            ) {
-                Text(
-                    text = "Dados do investimento",
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF555555)
-                )
-                Field(
-                    label = "Valor do investimento",
-                    placeHolder = "Quanto deseja investir?",
-                    value = capital,
-                    keyboardType = KeyboardType.Number,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    updateValue = {
-                        capital = it
-                    }
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                Field(
-                    label = "Taxa de juros mensal",
-                    placeHolder = "Quanto deseja investir?",
-                    value = tax,
-                    keyboardType = KeyboardType.Number,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    updateValue = {
-                        tax = it
-                    }
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                Field(
-                    label = "Perído em meses",
-                    placeHolder = "Quanto deseja investir?",
-                    value = period,
-                    keyboardType = KeyboardType.Number,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    updateValue = {
-                        period = it
-                    }
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Button(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Text(text = "Calcular")
-                }
-            }
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        Results(
-            interests = interests,
-            amount = amount
-        )
     }
 }
 
@@ -169,6 +61,6 @@ fun Greeting() {
 @Composable
 fun GreetingPreview() {
     InterestTheme {
-        Greeting()
+        InterestsScreen(InterestsScreenViewModel())
     }
 }
