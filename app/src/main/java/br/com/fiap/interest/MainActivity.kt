@@ -25,12 +25,18 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.fiap.interest.components.Field
 import br.com.fiap.interest.ui.theme.InterestTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,6 +56,27 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting() {
+
+    var capital by remember {
+        mutableStateOf("")
+    }
+
+    var tax by remember {
+        mutableStateOf("")
+    }
+
+    var period by remember {
+        mutableStateOf("")
+    }
+
+    var interests by remember {
+        mutableStateOf(0.0)
+    }
+
+    var amount by remember {
+        mutableStateOf(0.0)
+    }
+
     Column (
         modifier = Modifier
             .background(Color(0xFFF0F0F0))
@@ -81,33 +108,42 @@ fun Greeting() {
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF555555)
                 )
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
+                Field(
+                    label = "Valor do investimento",
+                    placeHolder = "Quanto deseja investir?",
+                    value = capital,
+                    keyboardType = KeyboardType.Number,
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    label = {
-                        Text(text = "Valor do investimento")
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                    updateValue = {
+                        capital = it
                     }
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
+                Field(
+                    label = "Taxa de juros mensal",
+                    placeHolder = "Quanto deseja investir?",
+                    value = tax,
+                    keyboardType = KeyboardType.Number,
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    label = {
-                        Text(text = "Taxa de juros mensal")
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                    updateValue = {
+                        tax = it
                     }
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
+                Field(
+                    label = "Perído em meses",
+                    placeHolder = "Quanto deseja investir?",
+                    value = period,
+                    keyboardType = KeyboardType.Number,
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    label = {
-                        Text(text = "Perído em meses")
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                    updateValue = {
+                        period = it
                     }
                 )
                 Spacer(modifier = Modifier.height(10.dp))
